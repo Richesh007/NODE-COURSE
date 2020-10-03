@@ -1,1 +1,2 @@
-console.log('log from utils.js')
+const name = 'Richesh'
+module.exports = name

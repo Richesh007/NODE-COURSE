@@ -11,8 +11,8 @@
 
 //Learning from Section-3 Chapter-10 (Importing your own files)
     
-    require('./utils.js'); //To import custom files it needs relative path unlike core modules or modules
+    const firstName = require('./utils.js'); //To import custom files it needs relative path unlike core modules or modules
 
-    console.log('log from app.js')
+    console.log(firstName)
 
 
