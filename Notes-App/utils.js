@@ -1,10 +1,11 @@
-
+validator = require('validator');
 module.exports = {
-    email1:'richsh.gaurav@gmail.com',
-    email2:'richesh@com',
-    url1:'www.abc.com',
-    url2:'https://www.abc.com',
-    url3:'https://abc.com',
-    url4:'abc.com',
-    url5:'https/abc.com',
-}
+    validator,
+    add : function(a,b){
+        if(!validator.isNumeric(a.toString()) || !validator.isNumeric(b.toString())){
+            return 'Error: one of these two given parameters ( ' + a +' and '+b+' ) or both are not a number.'
+        }
+        return a+b;
+    },
+};
+    

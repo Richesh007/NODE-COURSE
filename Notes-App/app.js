@@ -1,12 +1,22 @@
 //Learning from Section-3 Chapter-11 (Importing NPM modules) 
-    //To get start with a package it's always good to look into the docs section of that package to grab some knowledge about the package
+    //Challenge Use "chalk" npm package of version 2.4.1
 
-    const validator = require('validator'); //importing the package same as node core modules as we did earlier
-    const obj = require('./utils.js');
-    console.log(validator.isEmail(obj.email1)); //true
-    console.log(validator.isEmail(obj.email2)); //false
-    console.log(validator.isURL(obj.url1)); //true
-    console.log(validator.isURL(obj.url2)); //true
-    console.log(validator.isURL(obj.url3)); //true
-    console.log(validator.isURL(obj.url4)); //true
-    console.log(validator.isURL(obj.url5)); //false
+    const chalk = require('chalk');
+    const util = require('./utils.js');
+
+    console.log(util.validator.isNumeric(util.add(3,2).toString()) ? chalk.green('Summation successful 3 + 2 = '+util.add(3,2)) : chalk.red(util.add(3,2)));
+    console.log(util.validator.isNumeric(util.add(3,'b').toString()) ? chalk.green('Summation successful 3 + b = '+util.add(3,'b')) : chalk.red(util.add(3,'b')));
+
+    //Below are some examples given in the docs of this chalk package
+        console.log(chalk.blue.bgRed.bold('Hello world!'));
+        console.log(chalk.green(
+            'I am a green line ' +
+            chalk.blue.underline.bold('with a blue substring') +
+            ' that becomes green again!'
+        ));
+
+        console.log(`
+            CPU: ${chalk.red('90%')}
+            RAM: ${chalk.green('40%')}
+            DISK: ${chalk.yellow('70%')}
+        `);
