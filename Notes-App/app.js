@@ -1,22 +1,24 @@
-//Learning from Section-3 Chapter-11 (Importing NPM modules) 
-    //Challenge Use "chalk" npm package of version 2.4.1
+//Learning from Section-3 Chapter-13 (Global npm modules and nodemon) 
+   //There are some modules in npm repo which is designed to be used globally
+   //Like "nodemon" it's a package which is used to rerun the js file (in my case it's app.js)
+   // if there is any change.
 
-    const chalk = require('chalk');
-    const util = require('./utils.js');
+   // To install this package globally we have to use the command "npm install nodemon -g"
 
-    console.log(util.validator.isNumeric(util.add(3,2).toString()) ? chalk.green('Summation successful 3 + 2 = '+util.add(3,2)) : chalk.red(util.add(3,2)));
-    console.log(util.validator.isNumeric(util.add(3,'b').toString()) ? chalk.green('Summation successful 3 + b = '+util.add(3,'b')) : chalk.red(util.add(3,'b')));
+   //To use this package we just need to give command "nodemon app.js" instead of "node app.js" so it will run a process 
+   //which will continously monitor app.js file for any change and will restart if any change found
 
-    //Below are some examples given in the docs of this chalk package
-        console.log(chalk.blue.bgRed.bold('Hello world!'));
-        console.log(chalk.green(
-            'I am a green line ' +
-            chalk.blue.underline.bold('with a blue substring') +
-            ' that becomes green again!'
-        ));
+   //this package will add not any extra line in the js file instead it will allow you to run some extra commands in terminal like node/npm commands
 
-        console.log(`
-            CPU: ${chalk.red('90%')}
-            RAM: ${chalk.green('40%')}
-            DISK: ${chalk.yellow('70%')}
-        `);
+   //It is observed that in windows OS we get error as shown below while executing nodemon commands in powershell but in CMD it works fine without any policy change
+
+        //    nodemon : File C:\Users\riche\AppData\Roaming\npm\nodemon.ps1 cannot be loaded because running scripts is disabled on
+        //     this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+        //     At line:1 char:1
+        //     + nodemon -v
+        //     + ~~~~~~~
+        //     + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+        //     + FullyQualifiedErrorId : UnauthorizedAccess
+    
+    // To resolve the above mentioned issue we can execute the command "Set-ExecutionPolicy Unrestricted" in PowerShell as Administrator
+    console.log("nodemon started watching..!!")
