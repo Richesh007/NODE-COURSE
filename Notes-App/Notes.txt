@@ -1,0 +1,2 @@
+This statement will create a file Notes.txt if it's not already present in the given path as the first argumennt with the text in it as the second argument.
+ This statement will append the text given as second argument in Notes.txt file (i.e. first argument).
