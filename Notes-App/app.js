@@ -1,40 +1,46 @@
-//Learning from Section-4 chapter-16 (Argument parsing with yargs: part-1)
+//Learning from Section-4 chapter-17 (Argument parsing with yargs: part-2)
     const chalk = require('chalk');
     const yargs = require('yargs');
     const getNotes = require('./notes.js')
 
-    //The below console log will print 1.0.0 with the command "node app.js --version"
-    //and it will print below 3 lines with command "node app.js -help"
-        //     Options:
-        // --help     Show help                                                 [boolean]
-        // --version  Show version number                                       [boolean]
-    // console.log(yargs.argv) 
 
-    // Customizing yargs version
-    yargs.version('1.1.0') //Now we will get 1.1.0 with the command "node app.js --version"
-
-    // Creating add command
+    // Now to make these commands more useful and dynamic we'll use builder property as shown below for add command
+    //this builder property will add some option which can be given with the command or can make it mandatory to run that particular command
     yargs.command({                                 
         command: 'add',                             
-        describe: 'This will add a new note.',      
-        handler: function(){                        
-            console.log('Adding a new note.')       
+        describe: 'This will add a new note.',
+        builder: {
+            title: { // this is an option which can be given with add command like 'node app.js add --title="Note title"'
+                describe: 'Note title',
+                demandOption: true, //this is used to make this option mandatory by default it is false which means optional
+                type: 'string' //this will define the type of option's value
+            },
+            body: {
+                describe: 'Note body',
+                demandOption: true,
+                type: 'string'
+            }
+        },      
+        handler: function(argv /* here argv is command line arguments */){                        
+            console.log(chalk.bold.blue('Title: ')+ argv.title);       
+            console.log(chalk.bold.blue('body: ')+ argv.body);       
         }                                           
-    })      
-    
-    //Now after creating the above command we will get below output by running the command "node app.js -help"
+    })   
 
-        // Commands:
-        // app.js add  This will add a new note.
+    // if we run this above add command without required options (i.e. title, body) it will throw below error
+    /* 
+        app.js add
 
-        // Options:
-        // --help     Show help                                                 [boolean]
-        // --version  Show version number                                       [boolean]
+        This will add a new note.
 
-    // So, Basically it will show the script name, command and discription of the command under the command list.
-    // Now if we give add command in command line it will print "Adding a new note."
+        Options:
+        --help     Show help                                                 [boolean]
+        --version  Show version number                                       [boolean]
+        --title    Note title                                      [string] [required]
+        --body     Note body                                       [string] [required]
 
-    // console.log(yargs.argv);
+        Missing required arguments: title, body
+    */
 
     yargs.command({                                 
         command: 'remove',                             
@@ -58,4 +64,6 @@
         }                                           
     })   
 
-    yargs.argv; //this should be present at the end of all yargs related task. this could be inside console log also
+    // args.argv; 
+    // Instead of using the above commented code to parse all the yargs command we can use below function call.
+    yargs.parse();
