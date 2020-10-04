@@ -1,24 +1,21 @@
-//Learning from Section-3 Chapter-13 (Global npm modules and nodemon) 
-   //There are some modules in npm repo which is designed to be used globally
-   //Like "nodemon" it's a package which is used to rerun the js file (in my case it's app.js)
-   // if there is any change.
-
-   // To install this package globally we have to use the command "npm install nodemon -g"
-
-   //To use this package we just need to give command "nodemon app.js" instead of "node app.js" so it will run a process 
-   //which will continously monitor app.js file for any change and will restart if any change found
-
-   //this package will add not any extra line in the js file instead it will allow you to run some extra commands in terminal like node/npm commands
-
-   //It is observed that in windows OS we get error as shown below while executing nodemon commands in powershell but in CMD it works fine without any policy change
-
-        //    nodemon : File C:\Users\riche\AppData\Roaming\npm\nodemon.ps1 cannot be loaded because running scripts is disabled on
-        //     this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
-        //     At line:1 char:1
-        //     + nodemon -v
-        //     + ~~~~~~~
-        //     + CategoryInfo          : SecurityError: (:) [], PSSecurityException
-        //     + FullyQualifiedErrorId : UnauthorizedAccess
+//Learning from Section-4 chapter-15 (Getting Input from Users)
     
-    // To resolve the above mentioned issue we can execute the command "Set-ExecutionPolicy Unrestricted" in PowerShell as Administrator
-    console.log("nodemon started watching..!!")
+    //Like browsers have Window/Document object similarly Node has "Process" object So,
+    // from this object  we will be using "process.argv" here to get input from user through command line
+
+    console.log(process.argv);
+
+
+    // if we run this js file with an argument like "node app.js arg" then we'll get output as shown below
+
+        // [
+        // 'C:\\Program Files\\nodejs\\node.exe',
+        // 'C:\\Users\\riche\\OneDrive\\Desktop\\Node Course\\NODE-COURSE\\Notes-App\\app.js',
+        // 'arg'
+        // ]
+    
+    //Now here we can see "process.aegv" is an array where first two indexes are same for all
+    //  but the actual argument is the third index which we can use to do something meaningful 
+
+    console.log("\nHello "+process.argv[2]+"!"); //Run this file with a name as an argument.
+    
